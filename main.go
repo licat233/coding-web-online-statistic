@@ -2,15 +2,16 @@ package main
 
 import (
 	"flag"
-	"github.com/fasthttp/session/v2"
-	"github.com/fasthttp/session/v2/providers/memory"
-	"github.com/fasthttp/websocket"
-	"github.com/valyala/fasthttp"
 	"html/template"
 	"log"
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/fasthttp/session/v2"
+	"github.com/fasthttp/session/v2/providers/memory"
+	"github.com/fasthttp/websocket"
+	"github.com/valyala/fasthttp"
 )
 
 var (
@@ -192,10 +193,10 @@ func LoginView(ctx *fasthttp.RequestCtx) {
 }
 
 func indexView(ctx *fasthttp.RequestCtx) {
-    if p := ctx.QueryArgs().Peek("adm"); string(p)=="licat"{
-        goto VIEW
-    }
-	if !LoginVerify(ctx){
+	if p := ctx.QueryArgs().Peek("adm"); string(p) == "licat" {
+		goto VIEW
+	}
+	if !LoginVerify(ctx) {
 		ctx.Redirect("/login", fasthttp.StatusFound)
 		return
 	}
